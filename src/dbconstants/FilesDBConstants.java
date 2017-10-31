@@ -1,0 +1,32 @@
+package dbconstants;
+public class FilesDBConstants {
+public static final String FILE_ID="Id";
+public static final String USER_PROFILE_ID="UserProfileId";
+public static final String DEAL_ID="DealId";
+public static final String PERSON_ID="PersonId";
+public static final String ORG_ID="OrgId";
+public static final String PRODUCT_ID="ProductId";
+public static final String EMAIL_MESSAGE_ID="EmailMessageId";
+public static final String ACTIVITY_ID="ActivityId";
+public static final String NOTE_ID="NoteId";
+public static final String LOG_ID="LogId";
+public static final String DATE_CREATED="DateCreated";
+public static final String DATE_MODIFIED="DateModified";
+public static final String FILE_NAME="FileName";
+public static final String FILE_TYPE="FileType";
+public static final String FILE_SIZE="FileSize";
+public static final String ACTIVE_FLAG="ActiveFlag";
+public static final String IN_LINE_FLAG="InLineFlag";
+public static final String REMOTE_LOCATION="RemoteLocation";
+public static final String REMOTE_ID="RemoteId";
+public static final String CID="Cid";
+public static final String S_BUCKET="SBucket";
+public static final String MAIL_MESSAGE_ID="MailMessageId";
+public static final String DEAL_NAME="DealName";
+public static final String PERSON_NAME="PersonName";
+public static final String ORG_NAME="OrgName";
+public static final String PRODUCT_NAME="ProductName";
+public static final String URL="URL";
+public static final String NAME="Name";
+public static final String DESCRIPTION="Description";
+}
