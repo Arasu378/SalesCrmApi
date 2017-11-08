@@ -13,6 +13,8 @@ private boolean isSuccess;
 private String message;
 	@XmlElement(name="NotesList")
 private ArrayList<NotesModel>notesList=new ArrayList<NotesModel>();
+	@XmlElement(name="Id")
+private int id;
 public NotesResponse(){
 	
 }
@@ -33,6 +35,12 @@ public ArrayList<NotesModel> getNotesList() {
 }
 public void setNotesList(ArrayList<NotesModel> notesList) {
 	this.notesList = notesList;
+}
+public int getId() {
+	return id;
+}
+public void setId(int id) {
+	this.id = id;
 }
 
 }
