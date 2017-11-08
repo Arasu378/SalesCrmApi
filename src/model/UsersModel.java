@@ -31,9 +31,9 @@ public class UsersModel implements Serializable{
 	@XmlElement(name="SignupFlowVariation")
 	private String signupFlowVariation;
 	@XmlElement(name="HasCreatedCompany")
-	private String hasCreatedCompany;
+	private boolean hasCreatedCompany;
 	@XmlElement(name="IsAdmin")
-	private String isAdmin;
+	private boolean isAdmin;
 	@XmlElement(name="TimeZoneName")
 	private String timeZoneName;
 	@XmlElement(name="TimeZoneOffset")
@@ -123,16 +123,16 @@ public class UsersModel implements Serializable{
 	public void setSignupFlowVariation(String signupFlowVariation) {
 		this.signupFlowVariation = signupFlowVariation;
 	}
-	public String getHasCreatedCompany() {
+	public boolean getHasCreatedCompany() {
 		return hasCreatedCompany;
 	}
-	public void setHasCreatedCompany(String hasCreatedCompany) {
+	public void setHasCreatedCompany(boolean hasCreatedCompany) {
 		this.hasCreatedCompany = hasCreatedCompany;
 	}
-	public String getIsAdmin() {
+	public boolean getIsAdmin() {
 		return isAdmin;
 	}
-	public void setIsAdmin(String isAdmin) {
+	public void setIsAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
 	}
 	public String getTimeZoneName() {
