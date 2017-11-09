@@ -24,9 +24,10 @@ public static CurrencyResponse deleteCurrency(int CurrencyId){
 	           PreparedStatement stmt = connection.prepareStatement(query);
 	           int i=stmt.executeUpdate();
 	           if(i>0){
-	        	   response.setCurrencyModel(null);
-	        	   response.setIsSuccess(true);
-	        	   response.setMessage("Successfully deleted ");
+//	        	   response.setCurrencyModel(null);
+//	        	   response.setIsSuccess(true);
+//	        	   response.setMessage("Successfully deleted ");
+	        	   response=CurrencyClass.getCurrency();
 	           }else{
 	        	   response.setCurrencyModel(null);
 	        	   response.setIsSuccess(false);

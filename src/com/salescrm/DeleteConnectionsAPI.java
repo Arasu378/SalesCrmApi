@@ -6,12 +6,25 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import consumeclass.DeleteCompanyClass;
 import consumeclass.DeleteConnectionsClass;
 import model.ConnectionsModel;
 import response.ConnectionsResponse;
-
+/**  
+* DeleteConnectionsAPI.java - DELETE METHOD to delete connections.  
+* @author  Thirunavukkarasu v
+* @version 1.0 
+* @see DeleteConnectionsClass.java
+*/
 @Path("/deleteConnections")
 public class DeleteConnectionsAPI {
+	/**
+	   *	Delete method for deleting the connections in database.
+	   * 
+	   * @param requires the input ConnectionsModel class.
+	   * @exception Any exception
+	   * @return Which returns ConnectionsResponse class.
+	   */
 @DELETE
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)

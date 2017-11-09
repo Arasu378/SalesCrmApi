@@ -40,9 +40,10 @@ public class UpdateCurrencyClass {
 			//	callstatement.execute();
 				int count = callstatement.executeUpdate();
 				if(count>0){
-					response.setIsSuccess(true);
-					response.setMessage("Currency updated Successfully");
-					response.setCurrencyModel(null);
+//					response.setIsSuccess(true);
+//					response.setMessage("Currency updated Successfully");
+//					response.setCurrencyModel(null);
+					response=CurrencyClass.getCurrency();
 				}else{
 					response.setIsSuccess(false);
 					response.setMessage("Currency is not updated or Currency id is not existed");
