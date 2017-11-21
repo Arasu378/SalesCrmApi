@@ -12,6 +12,7 @@ import response.UserInterfaceResponse;
 @Path("/getUserInterfaceByUserProfileId/{UserProfileId}")
 public class GetUserInterfaceByUserProfileIdAPI {
 	@GET
+	@Secured
 	@Produces(MediaType.APPLICATION_JSON)
 	public UserInterfaceResponse getUserInterface(@PathParam("UserProfileId")int UserProfileId){
 		return GetUserInterfaceByUserProfileIdClass.getUserInterface(UserProfileId);

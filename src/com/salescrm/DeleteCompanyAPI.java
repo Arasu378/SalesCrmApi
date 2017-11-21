@@ -26,6 +26,7 @@ public class DeleteCompanyAPI {
 	   * @return Which returns CompanyResponse class.
 	   */
 @DELETE
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public CompanyResponse deleteCompany(CompanyModel model){

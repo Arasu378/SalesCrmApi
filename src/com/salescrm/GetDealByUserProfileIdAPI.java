@@ -13,6 +13,7 @@ import response.DealResponse;
 @Path("/getDealByUserProfileId/{UserProfileId}")
 public class GetDealByUserProfileIdAPI {
 @GET
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public DealResponse getDealByUserProfileId(@PathParam("UserProfileId")int UserProfileId){

@@ -13,6 +13,7 @@ import response.ProfilePictureResponse;
 @Path("/insertProfilePicture")
 public class InsertProfilePictureAPI {
 @POST
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public ProfilePictureResponse insertProfilePicture(ProfilePictureModel model){

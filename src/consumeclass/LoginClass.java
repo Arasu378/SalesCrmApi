@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import org.apache.commons.codec.binary.Base64;
@@ -36,104 +37,19 @@ public class LoginClass {
 			byte[] encodedBytes = Base64.encodeBase64(password.getBytes());
 			System.out.println("encodedBytes " + new String(encodedBytes));
 			String new_encryptedpassword=new String (encodedBytes);
+			System.out.println("Encrypted Password : "+new_encryptedpassword);
 			new_encryptedpassword="'"+new_encryptedpassword+"'";
+			System.out.println("Encrypted Password with quote : "+new_encryptedpassword);
 			String CompCode=getCompanyCode(userEmail,new_encryptedpassword);
 			if(CompCode!=null){
-				int profileid=getUserProfileId(CompCode);
-				if(profileid!=0){
-					String query="CALL `Company.usp_UserLogin`("+profileid+");";
-					System.out.println("Query : "+query);
-					connection=DriverManager.getConnection(Constants.URL,Constants.USER,Constants.PASSWORD);
-					st=connection.createStatement();
-					   ResultSet rs=st.executeQuery(query);
-					   
-					   try{
-						   while(rs.next()){
-							   
-							   LoginModel loModel=new LoginModel();
-								  String companyCode=rs.getString(LoginDBConstants.COMPANY_CODE);
-								 
-								  if(companyCode==null){
-									  companyCode="";
-								  }
-								  String companyName=rs.getString(LoginDBConstants.COMPANY_NAME);
-								  if(companyName==null){
-									  companyName="";
-								  }
-								  int connectionId=rs.getInt(LoginDBConstants.CONNECTION_ID);
-								  boolean isConnectedToMailChimpAccount=rs.getBoolean(LoginDBConstants.IS_CONNECTED_TO_MAIL_CHIMP_ACCOUNT);
-								  String mailChimpAccountEmail=rs.getString(LoginDBConstants.MAIL_CHIMP_ACCOUNT_EMAIL);
-								  if(mailChimpAccountEmail==null){
-									  mailChimpAccountEmail="";
-								  }
-								  int emailIntegrationId=rs.getInt(LoginDBConstants.EMAIL_INTEGRATION_ID);
-								  String alternativeEmailAddress=rs.getString(LoginDBConstants.ALTERNATIVE_EMAIL_ADDRESS);
-								  if(alternativeEmailAddress==null){
-									  alternativeEmailAddress="";
-								  }
-								  boolean isMyLinkedEmailsShared=rs.getBoolean(LoginDBConstants.IS_MY_LINKED_EMAIL_SHARED);
-								  boolean isMyEmailConversationsPrivate=rs.getBoolean(LoginDBConstants.IS_MY_EMAIL_CONVERSATION_PRIVATE);
-								  boolean isLinkMyEmailManually=rs.getBoolean(LoginDBConstants.IS_MY_LINK_MY_EMAIL_MANUALLY);
-								  boolean isEmailLinkWithDeals=rs.getBoolean(LoginDBConstants.IS_EMAIL_LINK_WITH_DEALS);
-								  int contactId=rs.getInt(LoginDBConstants.CONTACT_ID);
-								  boolean isConnectedToGoogleAccount=rs.getBoolean(LoginDBConstants.IS_CONNECTED_TO_GOOGLE_ACCOUNT);
-								  String googleAccountEmail=rs.getString(LoginDBConstants.GOOGLE_ACCOUNT_EMAIL);
-								  if(googleAccountEmail==null){
-									  googleAccountEmail="";
-								  }
-								  int driveId=rs.getInt(LoginDBConstants.DRIVE_ID);
-								  int profilePictureId=rs.getInt(LoginDBConstants.PROFILE_PICTURE_ID);
-								  int attachmentId=rs.getInt(LoginDBConstants.ATTACHMENT_ID);
-								  int reminderEmailId=rs.getInt(LoginDBConstants.REMINDER_EMAIL_ID);
-								  String reminderTypeId=rs.getString(LoginDBConstants.REMINDER_TYPE_ID);
-								  String reminderTimeId=rs.getString(LoginDBConstants.REMINDER_TIME_ID);
-								  int userProfileId=rs.getInt(LoginDBConstants.USER_PROFILE_ID);
-								  int companyId=rs.getInt(LoginDBConstants.COMPANY_ID);
-
-							   
-							  int userInterfaceId=rs.getInt(LoginDBConstants.USER_INTERFACE_ID);
-							  boolean isDeal=rs.getBoolean(LoginDBConstants.IS_DEAL);
-							  boolean isPerson=rs.getBoolean(LoginDBConstants.IS_PERSON);
-							  boolean isOrganization=rs.getBoolean(LoginDBConstants.IS_ORGANIZATION);
-							  loModel.setUserProfileId(userProfileId);
-							  loModel.setCompanyId(companyId);
-							  loModel.setCompanyCode(companyCode);
-							  loModel.setCompanyName(companyName);
-							  loModel.setConnectionId(connectionId);
-							  loModel.setIsConnectedToMailChimpAccount(isConnectedToMailChimpAccount);
-							  loModel.setMailChimpAccountEmail(mailChimpAccountEmail);
-							  loModel.setEmailIntegrationId(emailIntegrationId);
-							  loModel.setAlternativeEmailAddress(alternativeEmailAddress);
-							  loModel.setIsMyLinkedEmailsShared(isMyLinkedEmailsShared);
-							  loModel.setIsMyEmailConversationsPrivate(isMyEmailConversationsPrivate);
-							  loModel.setIsLinkMyEmailManually(isLinkMyEmailManually);
-							  loModel.setIsEmailLinkWithDeals(isEmailLinkWithDeals);
-							  loModel.setContactId(contactId);
-							  loModel.setIsConnectedToGoogleAccount(isConnectedToGoogleAccount);
-							  loModel.setGoogleAccountEmail(googleAccountEmail);
-							  loModel.setDriveId(driveId);
-							  loModel.setProfilePictureId(profilePictureId);
-							  loModel.setAttachmentId(attachmentId);
-							  loModel.setReminderEmailId(reminderEmailId);
-							  loModel.setReminderTypeId(reminderTypeId);
-							  loModel.setReminderTimeId(reminderTimeId);
-							  loModel.setUserInterfaceId(userInterfaceId);
-							  loModel.setIsDeal(isDeal);
-							  loModel.setIsPerson(isPerson);
-							  loModel.setIsOrganization(isOrganization);
-								  
-							  loginListnew.add(loModel);
-						   } 
-						  }catch(Exception e){
-							  e.printStackTrace();
-						  }
-					  
+				int  UserProfileId=getUserProfileId(CompCode);
+				if(UserProfileId!=0){
+					LoginResponse loginResponse=getLoginView(UserProfileId,null);
+					response=loginResponse;
 				}else{
 					response.setIsSuccess(false);
-					response.setMessage("ProfileId is zero");
+					response.setMessage("UserProfileId is zero");
 					response.setLoginModel(null);
-					return loginListnew;
-
 				}
 			}else{
 				response.setIsSuccess(false);
@@ -142,16 +58,7 @@ public class LoginClass {
 				return loginListnew;
 			}
 		
-			   if(loginListnew!=null&&loginListnew.size()!=0){
-				   response.setIsSuccess(true);
-				   response.setMessage("");
-				   response.setLoginModel(loginListnew);
-			   }else{
-				   response.setIsSuccess(false);
-				   response.setMessage("login List is Empty or Null!");
-				   response.setLoginModel(null);
-			   }
-
+			   
 			
 		}catch(Exception e){
 			e.printStackTrace();
@@ -191,105 +98,32 @@ try{
 		byte[] encodedBytes = Base64.encodeBase64(password.getBytes());
 		System.out.println("encodedBytes " + new String(encodedBytes));
 		String new_encryptedpassword=new String (encodedBytes);
+		System.out.println("Encrypted Password : "+new_encryptedpassword);
 		new_encryptedpassword="'"+new_encryptedpassword+"'";
+		System.out.println("Encrypted Password with quote : "+new_encryptedpassword);
 		String CompCode=getCompanyCode(userEmail,new_encryptedpassword);
 		if(CompCode!=null){
-			int profileid=getUserProfileId(CompCode);
-			if(profileid!=0){
-				String query="CALL `Company.usp_UserLogin`("+profileid+");";
-				System.out.println("Query : "+query);
-				connection=DriverManager.getConnection(Constants.URL,Constants.USER,Constants.PASSWORD);
-				st=connection.createStatement();
-				   ResultSet rs=st.executeQuery(query);
-				   
-				   try{
-					   while(rs.next()){
-						   
-						   LoginModel loModel=new LoginModel();
-							  String companyCode=rs.getString(LoginDBConstants.COMPANY_CODE);
-							 
-							  if(companyCode==null){
-								  companyCode="";
-							  }
-							  String companyName=rs.getString(LoginDBConstants.COMPANY_NAME);
-							  if(companyName==null){
-								  companyName="";
-							  }
-							  int connectionId=rs.getInt(LoginDBConstants.CONNECTION_ID);
-							  boolean isConnectedToMailChimpAccount=rs.getBoolean(LoginDBConstants.IS_CONNECTED_TO_MAIL_CHIMP_ACCOUNT);
-							  String mailChimpAccountEmail=rs.getString(LoginDBConstants.MAIL_CHIMP_ACCOUNT_EMAIL);
-							  if(mailChimpAccountEmail==null){
-								  mailChimpAccountEmail="";
-							  }
-							  int emailIntegrationId=rs.getInt(LoginDBConstants.EMAIL_INTEGRATION_ID);
-							  String alternativeEmailAddress=rs.getString(LoginDBConstants.ALTERNATIVE_EMAIL_ADDRESS);
-							  if(alternativeEmailAddress==null){
-								  alternativeEmailAddress="";
-							  }
-							  boolean isMyLinkedEmailsShared=rs.getBoolean(LoginDBConstants.IS_MY_LINKED_EMAIL_SHARED);
-							  boolean isMyEmailConversationsPrivate=rs.getBoolean(LoginDBConstants.IS_MY_EMAIL_CONVERSATION_PRIVATE);
-							  boolean isLinkMyEmailManually=rs.getBoolean(LoginDBConstants.IS_MY_LINK_MY_EMAIL_MANUALLY);
-							  boolean isEmailLinkWithDeals=rs.getBoolean(LoginDBConstants.IS_EMAIL_LINK_WITH_DEALS);
-							  int contactId=rs.getInt(LoginDBConstants.CONTACT_ID);
-							  boolean isConnectedToGoogleAccount=rs.getBoolean(LoginDBConstants.IS_CONNECTED_TO_GOOGLE_ACCOUNT);
-							  String googleAccountEmail=rs.getString(LoginDBConstants.GOOGLE_ACCOUNT_EMAIL);
-							  if(googleAccountEmail==null){
-								  googleAccountEmail="";
-							  }
-							  int driveId=rs.getInt(LoginDBConstants.DRIVE_ID);
-							  int profilePictureId=rs.getInt(LoginDBConstants.PROFILE_PICTURE_ID);
-							  int attachmentId=rs.getInt(LoginDBConstants.ATTACHMENT_ID);
-							  int reminderEmailId=rs.getInt(LoginDBConstants.REMINDER_EMAIL_ID);
-							  String reminderTypeId=rs.getString(LoginDBConstants.REMINDER_TYPE_ID);
-							  String reminderTimeId=rs.getString(LoginDBConstants.REMINDER_TIME_ID);
-							  int userProfileId=rs.getInt(LoginDBConstants.USER_PROFILE_ID);
-							  int companyId=rs.getInt(LoginDBConstants.COMPANY_ID);
-
-						   
-						  int userInterfaceId=rs.getInt(LoginDBConstants.USER_INTERFACE_ID);
-						  boolean isDeal=rs.getBoolean(LoginDBConstants.IS_DEAL);
-						  boolean isPerson=rs.getBoolean(LoginDBConstants.IS_PERSON);
-						  boolean isOrganization=rs.getBoolean(LoginDBConstants.IS_ORGANIZATION);
-						  loModel.setUserProfileId(userProfileId);
-						  loModel.setCompanyId(companyId);
-						  loModel.setCompanyCode(companyCode);
-						  loModel.setCompanyName(companyName);
-						  loModel.setConnectionId(connectionId);
-						  loModel.setIsConnectedToMailChimpAccount(isConnectedToMailChimpAccount);
-						  loModel.setMailChimpAccountEmail(mailChimpAccountEmail);
-						  loModel.setEmailIntegrationId(emailIntegrationId);
-						  loModel.setAlternativeEmailAddress(alternativeEmailAddress);
-						  loModel.setIsMyLinkedEmailsShared(isMyLinkedEmailsShared);
-						  loModel.setIsMyEmailConversationsPrivate(isMyEmailConversationsPrivate);
-						  loModel.setIsLinkMyEmailManually(isLinkMyEmailManually);
-						  loModel.setIsEmailLinkWithDeals(isEmailLinkWithDeals);
-						  loModel.setContactId(contactId);
-						  loModel.setIsConnectedToGoogleAccount(isConnectedToGoogleAccount);
-						  loModel.setGoogleAccountEmail(googleAccountEmail);
-						  loModel.setDriveId(driveId);
-						  loModel.setProfilePictureId(profilePictureId);
-						  loModel.setAttachmentId(attachmentId);
-						  loModel.setReminderEmailId(reminderEmailId);
-						  loModel.setReminderTypeId(reminderTypeId);
-						  loModel.setReminderTimeId(reminderTimeId);
-						  loModel.setUserInterfaceId(userInterfaceId);
-						  loModel.setIsDeal(isDeal);
-						  loModel.setIsPerson(isPerson);
-						  loModel.setIsOrganization(isOrganization);
-							  
-						  loginList.add(loModel);
-					   } 
-					  }catch(Exception e){
-						  e.printStackTrace();
-					  }
-				  
+			int  UserProfileId=getUserProfileId(CompCode);
+			String token=generateToken(model.getUserEmail(),model.getPassword(),UserProfileId);
+			boolean tokenAlreadyThere=InsertTokenClass.findTokenIfExist(token);
+			if(!tokenAlreadyThere){
+				@SuppressWarnings("unused")
+				boolean tokenValue=InsertTokenClass.insertToken(UserProfileId,token);
+			}
+			
+			
+			if(UserProfileId!=0){
+				
+					LoginResponse loginResponse=getLoginView(UserProfileId,token);
+					response=loginResponse;
+				
+				
 			}else{
 				response.setIsSuccess(false);
-				response.setMessage("ProfileId is zero");
+				response.setMessage("UserProfileId is zero");
 				response.setLoginModel(null);
-				return response;
-
 			}
+			
 		}else{
 			response.setIsSuccess(false);
 			response.setMessage("Company code is empty or invalid useremail and password");
@@ -297,16 +131,7 @@ try{
 			return response;
 		}
 	
-		   if(loginList!=null&&loginList.size()!=0){
-			   response.setIsSuccess(true);
-			   response.setMessage("");
-			   response.setLoginModel(loginList);
-		   }else{
-			   response.setIsSuccess(false);
-			   response.setMessage("login List is Empty or Null!");
-			   response.setLoginModel(null);
-		   }
-
+	
 		
 	}catch(Exception e){
 		e.printStackTrace();
@@ -366,10 +191,10 @@ private static String getCompanyCode(String email,String password) throws SQLExc
 	return finalvalue;
 }
 @SuppressWarnings("unused")
-private static int getUserProfileId(String CCode) throws SQLException{
-	int  finalvalue=0;
+private static int  getUserProfileId(String CCode) throws SQLException{
 	 Connection connection=null;
 	 java.sql.Statement st=null;
+	 int finalvalue=0;
 	 CCode="'"+CCode+"'";
 	 String query="CALL `GetUserProfileId_Login`("+CCode+");";
 		System.out.println("Query : "+query);
@@ -379,9 +204,10 @@ private static int getUserProfileId(String CCode) throws SQLException{
 		   
 		   try{
 			   while(rs.next()){
-				   int UserProfileId=rs.getInt(LoginDBConstants.USER_PROFILE_ID);
-				   finalvalue=UserProfileId;
+				   int userProfileId=rs.getInt(LoginDBConstants.USER_PROFILE_ID);
+				   finalvalue=userProfileId;
 			   }
+			   
 		   }catch(Exception e){
 			   e.printStackTrace();
 		   }finally{
@@ -402,5 +228,131 @@ private static int getUserProfileId(String CCode) throws SQLException{
 			}
 	return finalvalue;
 }
-
+@SuppressWarnings("unused")
+private static LoginResponse getLoginView(int UserProfileId,String token){
+	LoginResponse response=new LoginResponse();
+	ArrayList<LoginModel>loginList=new ArrayList<LoginModel>();
+	loginList.clear();
+	Connection connection=null;
+	Statement st=null;
+	try{
+		Class.forName("com.mysql.jdbc.Driver");
+	}catch(ClassNotFoundException e){
+		e.printStackTrace();
+	}
+	try{
+		String query="CALL `User.Login_View`("+UserProfileId+");";
+		System.out.println("Query : "+query);
+		connection=DriverManager.getConnection(Constants.URL,Constants.USER,Constants.PASSWORD);
+		st=connection.createStatement();
+		ResultSet rs=st.executeQuery(query);
+		while(rs.next()){
+			LoginModel model=new LoginModel();
+			String companyCode=rs.getString(LoginDBConstants.COMPANY_CODE);
+			if(companyCode==null){
+				companyCode="";
+			}
+			model.setCompanyCode(companyCode);
+			int registrationId=rs.getInt(LoginDBConstants.REGISTRATION_ID);
+			model.setRegistrationId(registrationId);
+			String emailAddress=rs.getString(LoginDBConstants.EMAIL_ADDRESS);
+			if(emailAddress==null){
+				emailAddress="";
+			}
+			model.setUserEmail(emailAddress);
+			String userPassword=rs.getString(LoginDBConstants.USER_PASSWORD);
+			if(userPassword==null){
+				userPassword="";
+			}
+			model.setPassword(userPassword);
+			String userName=rs.getString(LoginDBConstants.USER_NAME);
+			if(userName==null){
+				userName="";
+			}
+			if(token!=null){
+				model.setToken(token);
+			}else{
+				model.setToken("");
+			}
+			model.setUserName(userName);
+			String companyName=rs.getString(LoginDBConstants.COMPANY_NAME);
+			if(companyName==null){
+				companyName="";
+			}
+			model.setCompanyName(companyName);
+			int industryTypeId=rs.getInt(LoginDBConstants.INDUSTRY_TYPE_ID);
+			model.setIndustryTypeId(industryTypeId);
+			String lastLogin=rs.getString(LoginDBConstants.LAST_LOGIN);
+			if(lastLogin==null){
+				lastLogin="";
+			}
+			model.setLastLogin(lastLogin);
+			int userProfileId=rs.getInt(LoginDBConstants.USER_PROFILE_ID);
+			model.setUserProfileId(userProfileId);
+			String timeZone=rs.getString(LoginDBConstants.TIME_ZONE);
+			if(timeZone==null){
+				timeZone="";
+			}
+			model.setTimeZone(timeZone);
+			int userLocaleId=rs.getInt(LoginDBConstants.USER_LOCALE_ID);
+			model.setUserLocaleId(userLocaleId);
+			int languageId=rs.getInt(LoginDBConstants.LANGUAGE_ID);
+			model.setLanguageId(languageId);
+			int currencyId=rs.getInt(LoginDBConstants.CURRENCY_ID);
+			model.setCurrencyId(currencyId);
+			boolean isActive=rs.getBoolean(LoginDBConstants.IS_ACTIVE);
+			model.setIsActive(isActive);
+			String createdDate=rs.getString(LoginDBConstants.CREATED_DATE);
+			if(createdDate==null){
+				createdDate="";
+			}
+			model.setCreatedDate(createdDate);
+			String modifiedDate=rs.getString(LoginDBConstants.MODIFIED_DATE);
+			if(modifiedDate==null){
+				modifiedDate="";
+			}
+			model.setModifiedDate(modifiedDate);
+			boolean hasPic=rs.getBoolean(LoginDBConstants.HAS_PIC);
+			model.setHasPic(hasPic);
+			loginList.add(model);
+		}
+		if(loginList!=null && loginList.size()!=0){
+			response.setIsSuccess(true);
+			response.setMessage("Success");
+			response.setLoginModel(loginList);
+		}else{
+			response.setIsSuccess(false);
+			response.setMessage("Login list is empty or null");
+			response.setLoginModel(null);
+		}
+		
+	}catch(Exception e){
+		e.printStackTrace();
+	}finally{
+		if(connection!=null){
+			try{
+				connection.close();
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		if(st!=null){
+			try{
+				st.close();
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	
+	
+	return response;
+}
+	@SuppressWarnings("unused")
+	private static String generateToken(String userEmail,String password,int userProfileId){
+		String finalvalue=userEmail+"|"+password+"|"+userProfileId;
+		byte[] encodedBytes = Base64.encodeBase64(finalvalue.getBytes());
+		return new String(encodedBytes);
+	}
 }

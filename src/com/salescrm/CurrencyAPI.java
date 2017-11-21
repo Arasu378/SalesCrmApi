@@ -24,6 +24,7 @@ public class CurrencyAPI {
 	   * @return Which returns CurrencyResponse class.
 	   */ 
 	@GET
+	@Secured
 	@Produces(MediaType.APPLICATION_JSON)
 	public CurrencyResponse getCurrency(){
 		return CurrencyClass.getCurrency();

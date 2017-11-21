@@ -13,6 +13,7 @@ import consumeclass.GetStagesByPipeLineIdClass;
 
 public class GetStagesByPipeLineIdAPI {
 	@GET
+	@Secured
 	@Produces(MediaType.APPLICATION_JSON)
 	public StagesResponse getStages(@PathParam("PipeLineId")int PipeLineId){
 		return GetStagesByPipeLineIdClass.getStages(PipeLineId);

@@ -13,6 +13,7 @@ import response.LanguageResponse;
 @Path("/insertLanguage")
 public class InsertLanguageAPI {
 @POST
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public LanguageResponse insertLanguage(LanguageModel model){

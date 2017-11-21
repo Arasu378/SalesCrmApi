@@ -12,6 +12,7 @@ import response.ActivityResponse;
 @Path("/getActivitiesByUserProfileId/{UserProfileId}")
 public class GetActivitiesByUserProfileIdAPI {
 @GET
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 public ActivityResponse getActivities(@PathParam("UserProfileId")int UserProfileId){
 	return GetActivitiesByUserProfileIdClass.getActivitiesByUserProfileId(UserProfileId);

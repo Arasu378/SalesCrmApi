@@ -13,6 +13,7 @@ import response.CompanyResponse;
 @Path("/updateCompanyAPI")
 public class UpdateCompanyAPI {
 @PUT
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public CompanyResponse updateCompany(CompanyModel model){

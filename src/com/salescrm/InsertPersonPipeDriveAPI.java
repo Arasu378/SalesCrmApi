@@ -13,6 +13,7 @@ import response.PersonResponse;
 @Path("/insertPersonPDrive")
 public class InsertPersonPipeDriveAPI {
 	@POST
+	@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public PersonResponse insertPersonPipeDrive(PersonModel model){

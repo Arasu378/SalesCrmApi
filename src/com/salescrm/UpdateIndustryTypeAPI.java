@@ -13,6 +13,7 @@ import response.IndustryTypeResponse;
 @Path("/updateIndustryType")
 public class UpdateIndustryTypeAPI {
 @PUT
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public IndustryTypeResponse updateData(IndustryTypeModel model){

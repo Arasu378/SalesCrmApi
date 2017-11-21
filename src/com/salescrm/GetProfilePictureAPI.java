@@ -13,6 +13,7 @@ import response.ProfilePictureResponse;
 @Path("/getProfilePicture/{ProfilePictureId}")
 public class GetProfilePictureAPI {
 @GET
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public ProfilePictureResponse getProfilePicture(@PathParam("ProfilePictureId") int ProfilePictureId){

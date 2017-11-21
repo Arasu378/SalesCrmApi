@@ -13,6 +13,7 @@ import response.NotesResponse;
 @Path("/deleteNote")
 public class DeleteNoteIdAPI {
 @DELETE
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public NotesResponse deleteNote(NotesModel model){

@@ -13,6 +13,7 @@ import response.GoogleContactsResponse;
 @Path("/updateGoogleContacts")
 public class UpdateGoogleContactsAPI {
 @PUT
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public GoogleContactsResponse updateGoogleContacts(GoogleContactsModel model){

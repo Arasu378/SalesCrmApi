@@ -14,6 +14,7 @@ import response.IndustryTypeResponse;
 @Path("/insertIndustryType")
 public class InsertIndustryTypeAPI {
 @POST
+@Secured
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public IndustryTypeResponse insertData(IndustryTypeModel model){

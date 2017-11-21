@@ -11,6 +11,7 @@ import response.UserLocaleResponse;
 @Path("/getUserLocale")
 public class UserLocaleAPI {
 @GET
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 public UserLocaleResponse getUserLocale(){
 	return UserLocaleClass.getUserLocale();

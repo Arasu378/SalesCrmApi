@@ -13,6 +13,7 @@ import response.UserInterfaceResponse;
 @Path("/updateUserInterface")
 public class UpdateUserInterfaceAPI {
 @PUT
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public UserInterfaceResponse updateUserInterface(UserInterfaceModel model){

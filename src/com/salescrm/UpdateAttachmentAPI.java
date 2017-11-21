@@ -20,6 +20,7 @@ import consumeclass.UpdateAttachmentClass;
 @Path("/updateAttachment")
 public class UpdateAttachmentAPI {
 	@PUT
+	@Secured
     @Consumes(value={MediaType.MULTIPART_FORM_DATA})
  @Produces(MediaType.APPLICATION_JSON)
 	public AttachmentResponse insertData( @FormDataParam("AttachmentId")int inputattachmentid,

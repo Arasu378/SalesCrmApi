@@ -13,6 +13,7 @@ import response.CurrencyResponse;
 @Path("/insertCurrency")
 public class InsertCurrencyAPI {
 @POST
+@Secured
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public CurrencyResponse insertCurrency(CurrencyModel input){

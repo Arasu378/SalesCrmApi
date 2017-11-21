@@ -18,6 +18,7 @@ import response.AttachmentResponse;
 @Path("/insertAttachment")
 public class InsertAttachmentAPI {
 	@POST
+	@Secured
     @Consumes(value={MediaType.MULTIPART_FORM_DATA})
  @Produces(MediaType.APPLICATION_JSON)
 	public AttachmentResponse insertData(

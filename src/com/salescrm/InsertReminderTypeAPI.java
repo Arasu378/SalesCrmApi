@@ -13,6 +13,7 @@ import response.ReminderTypeResponse;
 @Path("/insertReminderType")
 public class InsertReminderTypeAPI {
 @POST
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public ReminderTypeResponse insertData(ReminderTypeModel model){

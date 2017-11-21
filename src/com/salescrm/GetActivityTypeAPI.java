@@ -11,6 +11,7 @@ import response.ActivityTypeResponse;
 @Path("/getActivityType")
 public class GetActivityTypeAPI {
 @GET
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 public ActivityTypeResponse getActivityType(){
 	return GetActivityTypeClass.getActivityType();

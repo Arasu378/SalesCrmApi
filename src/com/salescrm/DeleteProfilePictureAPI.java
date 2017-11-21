@@ -13,6 +13,7 @@ import response.ProfilePictureResponse;
 @Path("/deleteProfilePicture")
 public class DeleteProfilePictureAPI {
 @DELETE
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public ProfilePictureResponse deleteProfilePicture(ProfilePictureModel model){

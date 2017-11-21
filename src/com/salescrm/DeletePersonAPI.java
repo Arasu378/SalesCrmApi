@@ -13,6 +13,7 @@ import response.PersonResponse;
 @Path("/deletePerson")
 public class DeletePersonAPI {
 @DELETE
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public PersonResponse deletePerson(PersonModel model){

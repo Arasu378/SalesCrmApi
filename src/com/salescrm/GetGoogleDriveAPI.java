@@ -12,6 +12,7 @@ import response.GoogleDriveResponse;
 @Path("/getGoogleDrive/{DriveId}")
 public class GetGoogleDriveAPI {
 @GET
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 public GoogleDriveResponse getGoogleDrive(@PathParam("DriveId")int DriveId){
 	return GetGoogleDriveClass.getGoogleDrive(DriveId);

@@ -12,6 +12,7 @@ import consumeclass.GetNotesListByNoteIdClass;
 @Path("/getNotesListByNoteId/{NoteId}")
 public class GetNoteListByNoteIdAPI {
 @GET
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 public NotesResponse getNotesList(@PathParam("NoteId")int NoteId){
 	return GetNotesListByNoteIdClass.getNotesListByNoteId(NoteId);

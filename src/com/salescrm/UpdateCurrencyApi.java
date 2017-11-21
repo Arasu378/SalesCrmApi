@@ -13,6 +13,7 @@ import response.CurrencyResponse;
 @Path("/updateCurrency")
 public class UpdateCurrencyApi {
 @PUT
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public CurrencyResponse updateCurrency(CurrencyModel input){

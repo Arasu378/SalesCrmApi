@@ -13,6 +13,7 @@ import response.StagesResponse;
 @Path("/deleteStages")
 public class DeleteStagesAPI {
 @DELETE
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public StagesResponse deleteStages(StagesModel model){

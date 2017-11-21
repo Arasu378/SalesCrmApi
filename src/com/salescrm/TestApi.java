@@ -11,6 +11,7 @@ import consumeclass.TestClass;
 @Path("/getTest")
 public class TestApi {
 	@GET
+	@Secured
 	@Produces(MediaType.APPLICATION_JSON)
 	public String loginuser(){
 		return TestClass.getTest();

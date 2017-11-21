@@ -15,6 +15,7 @@ public class InsertPersonAPI {
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @POST
+@Secured
 public PersonResponse insertPerson(PersonModel model){
 	return InsertPersonClass.insertPerson(model);
 }

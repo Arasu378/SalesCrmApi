@@ -13,6 +13,7 @@ import response.PipeLineResponse;
 @Path("/deletePipeLine")
 public class DeletePipeLineAPI {
 @DELETE
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public static PipeLineResponse deletePIpeline(PipeLineModel model){

@@ -12,6 +12,7 @@ import response.ReminderEmailResponse;
 @Path("/getReminderByReminderEmailId/{ReminderEmailId}")
 public class GetReminderEmailByReminderEmailIdAPI {
 @GET
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 public ReminderEmailResponse getreminder(@PathParam("ReminderEmailId")int ReminderEmailId){
 	return GetReminderEmailByReminderEmailIdClass.getReminder(ReminderEmailId);

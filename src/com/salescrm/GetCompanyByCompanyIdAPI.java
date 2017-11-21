@@ -12,6 +12,7 @@ import response.CompanyResponse;
 @Path("/getCompanyByCompanyId/{CompanyId}")
 public class GetCompanyByCompanyIdAPI {
 @GET
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 public CompanyResponse getcompanyByCompanyId(@PathParam("CompanyId")int CompanyId){
 	return GetCompanyByCompanyIdClass.getCompanybyCompanyId(CompanyId);

@@ -26,6 +26,7 @@ public class DeleteConnectionsAPI {
 	   * @return Which returns ConnectionsResponse class.
 	   */
 @DELETE
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public ConnectionsResponse deleteConnections(ConnectionsModel model){

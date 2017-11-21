@@ -13,6 +13,7 @@ import response.UserLocaleResponse;
 @Path("/updateUserLocale")
 public class UpdateUserLocaleAPI {
 @PUT
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public UserLocaleResponse updateData(UserLocaleModel model){

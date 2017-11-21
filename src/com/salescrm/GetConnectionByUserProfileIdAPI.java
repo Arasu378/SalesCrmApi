@@ -12,6 +12,7 @@ import response.ConnectionsResponse;
 @Path("/getConnectionByUserProfileId/{UserProfileId}")
 public class GetConnectionByUserProfileIdAPI {
 @GET
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 public ConnectionsResponse getConnection(@PathParam("UserProfileId")int UserProfileId){
 	return GetConnectionsByUserProfileIdClass.getConnection(UserProfileId);

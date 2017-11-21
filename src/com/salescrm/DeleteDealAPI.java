@@ -26,6 +26,7 @@ public class DeleteDealAPI {
 	   * @return Which returns DeleteDealClass class.
 	   */
 @DELETE
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public DealResponse deleteDeal(DealModel model){

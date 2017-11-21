@@ -13,6 +13,7 @@ import response.ReminderEmailResponse;
 @Path("/updateReminderEmail")
 public class UpdateReminderEmailAPI {
 @PUT
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public ReminderEmailResponse updateReminderEmail(ReminderEmailModel model){

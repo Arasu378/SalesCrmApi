@@ -12,6 +12,7 @@ import response.GoogleCalanderResponse;
 @Path("/getGoogleCalanderByUserProfileId/{UserProfileId}")
 public class GetGoogleCalanderByUserProfileIdAPI {
 @GET
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 public GoogleCalanderResponse getGoogleCalander(@PathParam("UserProfileId")int UserProfileId){
 	return GetGoogleCalanderByUserProfileIdClass.getGoogleCalander(UserProfileId);

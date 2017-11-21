@@ -13,6 +13,7 @@ import response.GoogleDriveResponse;
 @Path("/updateGoogleDrive")
 public class UpdateGoogleDriveAPI {
 @PUT
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public GoogleDriveResponse updateGoogleDrive(GoogleDriveModel model){

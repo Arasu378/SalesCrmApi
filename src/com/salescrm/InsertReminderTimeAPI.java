@@ -13,6 +13,7 @@ import response.ReminderTimeResponse;
 @Path("/insertReminderTime")
 public class InsertReminderTimeAPI {
 @POST
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public ReminderTimeResponse insertReminderTime(ReminderTimeModel model){

@@ -13,6 +13,7 @@ import response.LanguageResponse;
 @Path("/deleteLanguage")
 public class DeleteLanguageAPI {
 @DELETE
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public LanguageResponse deleteLanguage(LanguageModel model){

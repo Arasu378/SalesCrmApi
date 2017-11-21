@@ -25,6 +25,7 @@ public class DeleteCurrencyAPI {
 	   * @return Which returns CurrencyResponse class.
 	   */
 @GET
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 public CurrencyResponse deleteCurrency(@PathParam("CurrencyId")int CurrencyId){
 	return DeleteCurrencyClass.deleteCurrency(CurrencyId);

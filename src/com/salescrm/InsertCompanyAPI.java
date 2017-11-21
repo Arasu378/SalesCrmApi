@@ -13,6 +13,7 @@ import response.CompanyResponse;
 @Path("/insertCompany")
 public class InsertCompanyAPI {
 @POST
+@Secured
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public CompanyResponse insertCompany(CompanyModel model){

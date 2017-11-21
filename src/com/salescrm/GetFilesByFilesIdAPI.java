@@ -12,6 +12,7 @@ import response.FilesResponse;
 @Path("/getFilesByFileId/{FileId}")
 public class GetFilesByFilesIdAPI {
 @GET
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 public FilesResponse getFilesByFileId(@PathParam("FileId")int FileId){
 	return GetFilesByFilesIdClass.getFilesByFileId(FileId);

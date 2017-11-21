@@ -13,6 +13,7 @@ import response.ConnectionsResponse;
 @Path("/insertConnection")
 public class InsertConnectionAPI {
 @POST
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public ConnectionsResponse insertConnection(ConnectionsModel model){

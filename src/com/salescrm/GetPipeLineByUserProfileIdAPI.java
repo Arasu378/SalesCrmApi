@@ -12,6 +12,7 @@ import response.PipeLineResponse;
 @Path("/getPipeLineByUserProfileId/{UserProfileId}")
 public class GetPipeLineByUserProfileIdAPI {
 	@GET
+	@Secured
 	@Produces(MediaType.APPLICATION_JSON)
 	public PipeLineResponse getPipeline(@PathParam("UserProfileId")int UserProfileId){
 		return GetPipeLineByUserProfileIdClass.getPipeLine(UserProfileId);

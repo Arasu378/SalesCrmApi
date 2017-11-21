@@ -13,6 +13,7 @@ import response.StagesResponse;
 
 public class GetStagesByUserProfileIdAPI {
 @GET
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 public StagesResponse getStages(@PathParam("UserProfileId")int UserProfileId){
 	return GetStagesByUserProfileIdClass.getStages(UserProfileId);

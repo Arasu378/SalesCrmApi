@@ -11,6 +11,7 @@ import response.PipeLineResponse;
 @Path("/getAllPipeLine")
 public class GetAllPipeLineAPI {
 @GET
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 public PipeLineResponse getallPipeline(){
 	return GetAllPipeLineClass.getPipeLine();

@@ -13,6 +13,7 @@ import response.PersonResponse;
 @Path("/getPersonPhoneByPersonId/{PersonId}")
 public class GetPersonPhoneByPersonIdAPI {
 	@GET
+	@Secured
 	@Produces(MediaType.APPLICATION_JSON)
 	public PersonPhoneResponse getPersonPhoneByPersonId(@PathParam("PersonId")int PersonId){
 		return GetPersonPhoneByPersonIdClass.getPersonPhone(PersonId);

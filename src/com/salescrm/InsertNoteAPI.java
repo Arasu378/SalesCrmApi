@@ -13,6 +13,7 @@ import response.NotesResponse;
 @Path("/insertNote")
 public class InsertNoteAPI {
 @POST
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public NotesResponse insertNote(NotesModel model){

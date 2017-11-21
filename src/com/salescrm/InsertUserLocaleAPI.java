@@ -13,6 +13,7 @@ import response.UserLocaleResponse;
 @Path("/insertUserLocale")
 public class InsertUserLocaleAPI {
 @POST
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public UserLocaleResponse insertUserLocale(UserLocaleModel model){

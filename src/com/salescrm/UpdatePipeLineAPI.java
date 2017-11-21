@@ -13,6 +13,7 @@ import response.PipeLineResponse;
 @Path("/updatePipeLine")
 public class UpdatePipeLineAPI {
 @PUT
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public PipeLineResponse updatepipeline(PipeLineModel model){

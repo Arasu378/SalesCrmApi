@@ -13,6 +13,7 @@ import response.ActivityTypeResponse;
 @Path("/insertAcitivityType")
 public class InsertActivityTypeAPI {
 @POST
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public ActivityTypeResponse insertActivityType(ActivityTypeModel model){

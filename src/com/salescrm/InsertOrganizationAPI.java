@@ -13,6 +13,7 @@ import response.OrganizationResponse;
 @Path("/insertOrganization")
 public class InsertOrganizationAPI {
 @POST
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public OrganizationResponse insertOrganization(OrganizationModel model){

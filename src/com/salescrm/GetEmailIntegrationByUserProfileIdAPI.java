@@ -12,6 +12,7 @@ import response.EmailIntegrationResponse;
 @Path("/getEmailIntegrationByUserProfileId/{UserProfileId}")
 public class GetEmailIntegrationByUserProfileIdAPI {
 @GET
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 public EmailIntegrationResponse getEmailIntegration(@PathParam("UserProfileId")int UserProfileId){
 	return GetEmailIntegrationByUserProfileIdClass.getEmailIntegrationByUserProfileId(UserProfileId);

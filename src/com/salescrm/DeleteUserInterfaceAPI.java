@@ -13,6 +13,7 @@ import response.UserInterfaceResponse;
 @Path("/deleteUserInterface")
 public class DeleteUserInterfaceAPI {
 @DELETE
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public UserInterfaceResponse delteUserInterface(UserInterfaceModel model){

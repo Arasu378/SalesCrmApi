@@ -26,6 +26,7 @@ public class DeleteEmailIntegrationAPI {
 	   * @return Which returns EmailIntegrationResponse class.
 	   */
 @DELETE
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public EmailIntegrationResponse deleteEmailIntegration(EmailIntegrationModel model){

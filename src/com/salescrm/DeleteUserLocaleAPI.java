@@ -13,6 +13,7 @@ import response.UserLocaleResponse;
 @Path("/deleteUserLocale")
 public class DeleteUserLocaleAPI {
 @DELETE
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public UserLocaleResponse deleteUserLocale(UserLocaleModel model){

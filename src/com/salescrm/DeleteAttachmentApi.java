@@ -25,6 +25,7 @@ public class DeleteAttachmentApi {
 	   * @return Which returns AttachmentResponse class.
 	   */
 @GET
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 public AttachmentResponse deleteAttachment(@PathParam ("AttachmentId")int attachmentid){
 	return DeleteAttachmentClass.deleteAttachment(attachmentid);

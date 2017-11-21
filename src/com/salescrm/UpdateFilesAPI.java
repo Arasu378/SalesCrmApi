@@ -13,6 +13,7 @@ import response.FilesResponse;
 @Path("/updateFiles")
 public class UpdateFilesAPI {
 @PUT
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public FilesResponse updateFiles(FilesModel model){

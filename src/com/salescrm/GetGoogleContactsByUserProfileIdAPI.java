@@ -12,6 +12,7 @@ import response.GoogleContactsResponse;
 @Path("/getGoogleContactsByUserProfileId/{UserProfileId}")
 public class GetGoogleContactsByUserProfileIdAPI {
 @GET
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 public GoogleContactsResponse getGoogleContacts(@PathParam("UserProfileId")int UserProfileId){
 	return GetGoogleContactsByUserProfileIdClass.getGoogleContacts(UserProfileId);

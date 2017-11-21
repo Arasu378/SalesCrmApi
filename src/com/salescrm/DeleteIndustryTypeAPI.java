@@ -26,6 +26,7 @@ public class DeleteIndustryTypeAPI {
 	   * @return Which returns IndustryTypeResponse.java class.
 	   */
 @DELETE
+@Secured
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public IndustryTypeResponse deleteData(IndustryTypeModel model){

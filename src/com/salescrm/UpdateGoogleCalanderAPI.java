@@ -13,6 +13,7 @@ import response.GoogleCalanderResponse;
 @Path("/updateGoogleCalander")
 public class UpdateGoogleCalanderAPI {
 @PUT
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public GoogleCalanderResponse updateGoogleCalander(GoogleCalanderModel model){

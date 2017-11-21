@@ -11,6 +11,7 @@ import response.LanguageResponse;
 @Path("/getLanguage")
 public class LanguageAPI {
 @GET
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 public LanguageResponse getLanguage(){
 	return LanguageClass.getLanguage();

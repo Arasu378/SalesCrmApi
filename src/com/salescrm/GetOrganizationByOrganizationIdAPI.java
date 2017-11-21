@@ -12,6 +12,7 @@ import response.OrganizationResponse;
 @Path("/getOrganizationByOrganizationId/{OrganizationId}")
 public class GetOrganizationByOrganizationIdAPI {
 @GET
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 public OrganizationResponse getOrganizationByOrganizationId(@PathParam("OrganizationId")int OrganizationId){
 	return GetOrganizationByOrganizationIdClass.getOrganizationByUserProfileId(OrganizationId);

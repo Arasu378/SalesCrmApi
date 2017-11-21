@@ -13,6 +13,7 @@ import response.OrganizationResponse;
 @Path("/deleteOrganizationByOrgId")
 public class DeleteOrganizationByOrgIdAPI {
 @DELETE
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public OrganizationResponse deleteOrganization(OrganizationModel model){

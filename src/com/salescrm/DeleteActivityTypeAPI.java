@@ -26,6 +26,7 @@ public class DeleteActivityTypeAPI {
 	   * @return Which returns ActivityTypeResponse class.
 	   */ 
 @DELETE
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public ActivityTypeResponse deleteActivityType(ActivityTypeModel model){

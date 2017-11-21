@@ -13,6 +13,7 @@ import response.ConnectionsResponse;
 @Path("/updateConnections")
 public class UpdateConnectionsAPI {
 @PUT
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public ConnectionsResponse updateConnections(ConnectionsModel model){

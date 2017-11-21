@@ -26,6 +26,7 @@ public class DeleteFilesAPI {
 	   * @return Which returns FilesResponse class.
 	   */
 @DELETE
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public FilesResponse deleteFiles(FilesModel model){

@@ -59,10 +59,163 @@ private boolean isDeal;
 private boolean isPerson;
 	@XmlElement(name="IsOrganization")
 private boolean isOrganization;
+	@XmlElement(name="TimeZone")
+private String timeZone;
+	@XmlElement(name="UserLocaleId")
+private int userLocaleId;
+	@XmlElement(name="LanguageId")
+private int languageId;
+	@XmlElement(name="CurrencyId")
+private int currencyId;
+	@XmlElement(name="IsActive")
+private boolean isActive;
+	@XmlElement(name="CreatedDate")
+private String createdDate;
+	@XmlElement(name="ModifiedDate")
+private String modifiedDate;
+	@XmlElement(name="HasPic")
+private boolean hasPic;
+	@XmlElement(name="RegistrationId")
+private int registrationId;
+	@XmlElement(name="EmailAddress")
+private String emailAddress; 
+	@XmlElement(name="UserName")
+private String userName;
+	@XmlElement(name="IndustryTypeId")
+private int industryTypeId;
+	@XmlElement(name="LastLogin")
+private String lastLogin;
+	@XmlElement(name="Token")
+private String token;
 	public LoginModel(){
 		
 	}
 	
+	
+	public String getToken() {
+		return token;
+	}
+
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+
+	public String getLastLogin() {
+		return lastLogin;
+	}
+
+
+	public void setLastLogin(String lastLogin) {
+		this.lastLogin = lastLogin;
+	}
+
+
+	public int getIndustryTypeId() {
+		return industryTypeId;
+	}
+
+
+	public void setIndustryTypeId(int industryTypeId) {
+		this.industryTypeId = industryTypeId;
+	}
+
+
+	public String getUserName() {
+		return userName;
+	}
+
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+
+	public String getEmailAddress() {
+		return emailAddress;
+	}
+
+
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
+
+
+	public int getRegistrationId() {
+		return registrationId;
+	}
+
+
+	public void setRegistrationId(int registrationId) {
+		this.registrationId = registrationId;
+	}
+
+
+	public String getCreatedDate() {
+		return createdDate;
+	}
+
+
+	public void setCreatedDate(String createdDate) {
+		this.createdDate = createdDate;
+	}
+
+
+	public String getModifiedDate() {
+		return modifiedDate;
+	}
+
+
+	public void setModifiedDate(String modifiedDate) {
+		this.modifiedDate = modifiedDate;
+	}
+
+
+	public boolean isHasPic() {
+		return hasPic;
+	}
+
+
+	public void setHasPic(boolean hasPic) {
+		this.hasPic = hasPic;
+	}
+
+
+	public boolean getIsActive() {
+		return isActive;
+	}
+
+
+	public void setIsActive(boolean isActive) {
+		this.isActive = isActive;
+	}
+
+
+	public int getCurrencyId() {
+		return currencyId;
+	}
+
+	public void setCurrencyId(int currencyId) {
+		this.currencyId = currencyId;
+	}
+
+	public int getLanguageId() {
+		return languageId;
+	}
+
+	public void setLanguageId(int languageId) {
+		this.languageId = languageId;
+	}
+
+	public int getUserLocaleId() {
+		return userLocaleId;
+	}
+
+	public void setUserLocaleId(int userLocaleId) {
+		this.userLocaleId = userLocaleId;
+	}
+
 	public String getUserEmail() {
 		return userEmail;
 	}
@@ -77,6 +230,14 @@ private boolean isOrganization;
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getTimeZone() {
+		return timeZone;
+	}
+
+	public void setTimeZone(String timeZone) {
+		this.timeZone = timeZone;
 	}
 
 	public int getUserProfileId() {

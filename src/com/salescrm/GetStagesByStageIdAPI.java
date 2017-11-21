@@ -12,6 +12,7 @@ import response.StagesResponse;
 @Path("/getStagesByStageId/{StageId}")
 public class GetStagesByStageIdAPI {
 @GET
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 public StagesResponse getStagesByStageId(@PathParam("StageId")int StageId){
 	return GetStagesByStageIdClass.getStagesByStageId(StageId);

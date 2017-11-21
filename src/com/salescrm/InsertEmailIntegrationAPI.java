@@ -13,6 +13,7 @@ import response.EmailIntegrationResponse;
 @Path("/insertEmailIntegraion")
 public class InsertEmailIntegrationAPI {
 @POST
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public EmailIntegrationResponse insertEmailIntegration(EmailIntegrationModel model){

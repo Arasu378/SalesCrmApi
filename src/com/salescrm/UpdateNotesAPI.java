@@ -13,6 +13,7 @@ import response.NotesResponse;
 @Path("/updateNotes")
 public class UpdateNotesAPI {
 @PUT
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public NotesResponse updateNotes(NotesModel model){

@@ -13,6 +13,7 @@ import response.ProfilePictureResponse;
 @Path("/updateProfilePicture")
 public class UpdateProfilePictureAPI {
 @PUT
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public ProfilePictureResponse updateProfilePicture(ProfilePictureModel model){

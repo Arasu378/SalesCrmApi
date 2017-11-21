@@ -26,6 +26,7 @@ public class DeleteGoogleContactsAPI {
 	   * @return Which returns GoogleContactsResponse.java class.
 	   */
 @DELETE
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public GoogleContactsResponse deleteGoogleContacts(GoogleContactsModel model){

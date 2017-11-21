@@ -26,6 +26,7 @@ public class DeleteGoogleCalanderAPI {
 	   * @return Which returns GoogleCalanderResponse.java class.
 	   */
 @DELETE
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public GoogleCalanderResponse deleteGoogleCalander(GoogleCalanderModel model){

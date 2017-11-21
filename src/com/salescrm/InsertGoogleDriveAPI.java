@@ -13,6 +13,7 @@ import response.GoogleDriveResponse;
 @Path("/insertGoogleDrive")
 public class InsertGoogleDriveAPI {
 @POST
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public GoogleDriveResponse insertGoogleDrive(GoogleDriveModel model){

@@ -14,6 +14,7 @@ import response.ActivityResponse;
 @Path("/updateActivity")
 public class UpdateActivityAPI {
 @PUT
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public ActivityResponse updateActivity(ActivityModel model){

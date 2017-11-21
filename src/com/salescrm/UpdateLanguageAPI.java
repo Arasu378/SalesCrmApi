@@ -13,6 +13,7 @@ import response.LanguageResponse;
 @Path("/updateLanguage")
 public class UpdateLanguageAPI {
 @PUT
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public LanguageResponse updateLanguage(LanguageModel model){

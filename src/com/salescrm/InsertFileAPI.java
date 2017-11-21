@@ -18,6 +18,7 @@ import response.FilesResponse;
 @Path("/insertFile")
 public class InsertFileAPI {
 @POST
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public FilesResponse insertFiles(FilesModel model){

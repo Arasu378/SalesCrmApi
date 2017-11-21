@@ -12,6 +12,7 @@ import response.NotesResponse;
 @Path("/getNotesListByUserProfileId/{UserProfileId}")
 public class GetNotesListByUserProfileIdAPI {
 @GET
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 public NotesResponse getNotesList(@PathParam("UserProfileId")int UserProfileId){
 	return GetNotesListByUserProfileIdClass.getNotesListByUserProfileId(UserProfileId);

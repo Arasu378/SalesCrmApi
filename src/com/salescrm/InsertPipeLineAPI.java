@@ -13,6 +13,7 @@ import response.PipeLineResponse;
 @Path("/insertPipeLine")
 public class InsertPipeLineAPI {
 @POST
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public PipeLineResponse insertpipeline(PipeLineModel model){

@@ -13,6 +13,7 @@ import model.ReminderEmailModel;
 @Path("/deleteReminderEmail")
 public class DeleteReminderEmailAPI {
 @DELETE
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public ReminderEmailResponse deleteReminderEmail(ReminderEmailModel model){

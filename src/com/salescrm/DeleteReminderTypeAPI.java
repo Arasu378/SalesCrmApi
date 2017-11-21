@@ -13,6 +13,7 @@ import response.ReminderTypeResponse;
 @Path("/deleteReminderType")
 public class DeleteReminderTypeAPI {
 @DELETE
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public ReminderTypeResponse deleteData(ReminderTypeModel model){

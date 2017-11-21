@@ -13,6 +13,7 @@ import consumeclass.GetAttachmentPictureByAttachmentIdClass;
 @Path("/getAttachmentPicture/{AttachmentId}")
 public class GetAttachmentPictureByAttachmentIdAPI {
 	@GET
+	@Secured
 	@Produces("image/jpeg")
 	public InputStream getAttachmentPicture(@PathParam("AttachmentId")int AttachmentId){
 		return GetAttachmentPictureByAttachmentIdClass.getPictures(AttachmentId);

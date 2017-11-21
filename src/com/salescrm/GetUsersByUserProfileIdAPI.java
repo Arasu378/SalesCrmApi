@@ -12,6 +12,7 @@ import response.UsersResponse;
 @Path("/getUsersByUserProfileId/{UserProfileId}")
 public class GetUsersByUserProfileIdAPI {
 	@GET
+	@Secured
 	@Produces(MediaType.APPLICATION_JSON)
 	public static UsersResponse getUsersByUserProfileId(@PathParam("UserProfileId")int UserProfileId){
 		//comment added in get users

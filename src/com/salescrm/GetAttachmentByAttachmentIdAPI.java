@@ -7,11 +7,13 @@ import javax.ws.rs.core.MediaType;
 
 import consumeclass.GetAttachmentByAttachmentIdClass;
 import response.AttachmentResponse;
+
 import javax.ws.rs.GET;
 
 @Path("/getAttachmentId/{AttachmentId}")
 public class GetAttachmentByAttachmentIdAPI {
 	@GET
+	@Secured
 	@Produces(MediaType.APPLICATION_JSON)
 	public AttachmentResponse getAttachment(@PathParam("AttachmentId")int AttachmentId){
 		return GetAttachmentByAttachmentIdClass.getAttachment(AttachmentId);

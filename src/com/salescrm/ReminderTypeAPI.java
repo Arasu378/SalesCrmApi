@@ -11,6 +11,7 @@ import response.ReminderTypeResponse;
 @Path("/getReminderType")
 public class ReminderTypeAPI {
 @GET
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 public ReminderTypeResponse getReminderType(){
 	return ReminderTypeClass.getReminderType();

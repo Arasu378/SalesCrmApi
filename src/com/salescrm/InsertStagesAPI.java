@@ -13,6 +13,7 @@ import response.StagesResponse;
 @Path("/insertStages")
 public class InsertStagesAPI {
 @POST
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public StagesResponse insertStages(StagesModel model){

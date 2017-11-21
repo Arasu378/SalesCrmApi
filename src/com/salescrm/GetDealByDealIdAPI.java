@@ -12,6 +12,7 @@ import response.DealResponse;
 @Path("/getDealByDealId/{DealId}")
 public class GetDealByDealIdAPI {
 @GET
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 public DealResponse getDealByDealId(@PathParam("DealId")int DealId){
 	return GetDealByDealIdClass.getDealByDealId(DealId);

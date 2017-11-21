@@ -12,6 +12,7 @@ import response.PersonEmailResponse;
 @Path("/getPersonEmailByPersonId/{PersonId}")
 public class GetPersonEmailByPersonIdAPI {
 @GET
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 public PersonEmailResponse getPersonEmailByPersonId(@PathParam("PersonId")int PersonId){
 	return GetPersonEmailByPersonIdClass.getPersonEmailByPersonId(PersonId);

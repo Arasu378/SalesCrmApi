@@ -13,6 +13,7 @@ import response.UserInterfaceResponse;
 @Path("/insertUserInterface")
 public class InsertUserInterfaceAPI {
 @POST
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public UserInterfaceResponse insertUserInterface(UserInterfaceModel model){

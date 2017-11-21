@@ -13,6 +13,7 @@ import response.DealResponse;
 @Path("/insertDeal")
 public class InsertDealAPI {
 @POST
+@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public DealResponse insertDeal(DealModel model){
