@@ -13,5 +13,6 @@ public class TokenDBConstants {
 	public static final String CREATED_DATE="CreatedDate";
 	public static final String MODIFIED_DATE="ModifiedDate";
 	public static final String TOKEN="Token";
+	public static final String EXPIRES="Expires";
 
 }
