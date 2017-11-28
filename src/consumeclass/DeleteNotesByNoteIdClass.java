@@ -19,7 +19,7 @@ public static NotesResponse deleteNote(NotesModel model){
 		e.printStackTrace();
 	}
 	try{
-		String query="{CALLL `UserSettings.Notes_DeleteNote`(?)}";
+		String query="{CALL `UserSettings.Notes_DeleteNote`(?)}";
 		System.out.println("Query : "+query);
 		connection=DriverManager.getConnection(Constants.URL,Constants.USER,Constants.PASSWORD);
 		callableStatement=connection.prepareCall(query);
