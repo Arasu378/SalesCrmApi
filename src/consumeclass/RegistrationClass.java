@@ -37,6 +37,7 @@ public static RegistrationResponse registration(RegistrationModel model){
 		String new_encryptedpassword=new String (encodedBytes);
 		new_encryptedpassword="'"+new_encryptedpassword+"'";
 	String companyCode=RegisterEmail(email,new_encryptedpassword);
+	String cCode=companyCode;
 	System.out.println("RegistrationId : "+regId);
 	if(companyCode!=null){
 		companyCode="'"+companyCode+"'";
@@ -55,7 +56,7 @@ public static RegistrationResponse registration(RegistrationModel model){
 				 registrationList.clear();
 					RegistrationModel mod=new RegistrationModel();
 					mod.setRegistrationId(regId);
-					mod.setCompanyCode(companyCode);
+					mod.setCompanyCode(cCode);
 					mod.setUserProfileId(proid);
 					mod.setEmailAddress(model.getEmailAddress());
 					registrationList.add(mod);
@@ -65,11 +66,13 @@ public static RegistrationResponse registration(RegistrationModel model){
 			response.setIsSuccess(true);
 			response.setMessage("Registration Successfull");
 			response.setLoginModel(null);
+			response.setLoginModel(null);
 			
 		
 			response.setRegistrationList(registrationList);
 		}else{
 			response.setIsSuccess(false);
+			response.setLoginModel(null);
 			response.setMessage("Registration is not successfull or registration list is empty");
 			response.setRegistrationList(null);
 		}
@@ -79,6 +82,7 @@ public static RegistrationResponse registration(RegistrationModel model){
 		response.setIsSuccess(false);
 		response.setMessage("company code is empty: or Email is Already registered");
 		response.setRegistrationList(null);
+		response.setLoginModel(null);
 		return response;
 	}
 		

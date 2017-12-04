@@ -51,10 +51,13 @@ public static RegistrationResponse insertOtherDetails(RegistrationModel model){
 				response.setIsSuccess(true);
 				response.setMessage("");
 				response.setLoginModel(lsold);
+				
 			}else{
 				response.setIsSuccess(false);
 				response.setMessage("insertCompany is failed or value is null");
 				response.setRegistrationList(null);
+				response.setLoginModel(null);
+
 			}
 		//}
 //		else{
@@ -67,6 +70,8 @@ public static RegistrationResponse insertOtherDetails(RegistrationModel model){
 		response.setIsSuccess(false);
 		response.setMessage("Updateregistrationtable is failed or value is null");
 		response.setRegistrationList(null);
+		response.setLoginModel(null);
+
 	}
 	
 	
