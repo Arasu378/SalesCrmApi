@@ -57,12 +57,14 @@ public static RegistrationResponse registration(RegistrationModel model){
 					mod.setRegistrationId(regId);
 					mod.setCompanyCode(companyCode);
 					mod.setUserProfileId(proid);
+					mod.setEmailAddress(model.getEmailAddress());
 					registrationList.add(mod);
 		   }
 		  
 		if(registrationList!=null && registrationList.size()!=0){
 			response.setIsSuccess(true);
 			response.setMessage("Registration Successfull");
+			response.setLoginModel(null);
 			
 		
 			response.setRegistrationList(registrationList);
