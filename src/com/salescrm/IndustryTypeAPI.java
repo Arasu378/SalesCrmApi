@@ -11,7 +11,7 @@ import response.IndustryTypeResponse;
 @Path("/getIndustryType")
 public class IndustryTypeAPI {
 @GET
-@Secured
+//@Secured
 @Produces(MediaType.APPLICATION_JSON)
 public IndustryTypeResponse getIndustry(){
 	return IndustryTypeClass.getIndustryType();
