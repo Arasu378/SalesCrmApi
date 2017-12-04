@@ -58,6 +58,7 @@ public static RegistrationResponse registration(RegistrationModel model){
 					mod.setRegistrationId(regId);
 					mod.setCompanyCode(cCode);
 					mod.setUserProfileId(proid);
+					mod.setUserPassword(model.getUserPassword());
 					mod.setEmailAddress(model.getEmailAddress());
 					registrationList.add(mod);
 		   }
