@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.ArrayList;
 
+import org.apache.commons.codec.binary.Base64;
+
 import model.LoginModel;
 import model.RegistrationModel;
 import response.LoginResponse;
@@ -35,22 +37,26 @@ public static RegistrationResponse insertOtherDetails(RegistrationModel model){
 				LoginModel model2=new LoginModel();
 				model2.setUserEmail(email);
 				model2.setPassword(password);
-				ArrayList<LoginModel> lsnew=new ArrayList<LoginModel>();
-				ArrayList<LoginModel> lsold=new ArrayList<LoginModel>(LoginClass.loginTest(model2));
-				for (int i = 0; i < lsold.size(); i++){
-					lsnew.add(i, lsold.get(i));
-			    } 
+				String token=generateToken(model.getEmailAddress(),model.getUserPassword(),model.getUserProfileId());
+
+//				ArrayList<LoginModel> lsnew=new ArrayList<LoginModel>();
+				LoginResponse loginResponse=(LoginClass.login(model2));
+//				for (int i = 0; i < lsold.size(); i++){
+//					lsnew.add(i, lsold.get(i));
+//			    } 
 				
 			
 				try{
-					System.out.println("LoginList Size : "+lsold.size());
+				//	System.out.println("LoginList Size : "+lsold.size());
 
 				}catch(Exception e){
 					e.printStackTrace();
 				}
+				response.setLogin(loginResponse);
 				response.setIsSuccess(true);
-				response.setMessage("");
-				response.setLoginModel(lsold);
+				response.setLoginModel(null);
+				response.setMessage("Success");
+				response.setRegistrationList(null);
 				
 			}else{
 				response.setIsSuccess(false);
@@ -91,6 +97,7 @@ public static String updateRegistrationTable(String CompanyName,int IndustryType
 		try{
 			String query="{CALL `Update.Registration_OtherDetails`(?,?,?)}";
 		System.out.println("Query : "+query);
+		System.out.println("Other details : "+"CALL `Update.Registration_OtherDetails`("+CompanyName+","+IndustryTypeId+","+RegistrationId);
 		connection=DriverManager.getConnection(Constants.URL,Constants.USER,Constants.PASSWORD);
 		callstatement = connection.prepareCall(query);
 		callstatement.setString(1,CompanyName );
@@ -214,5 +221,11 @@ public static String insertCompany(int UserProfileId,String CompanyCode, String 
 		}
 	
 	return finalresponse;
+}
+@SuppressWarnings("unused")
+private static String generateToken(String userEmail,String password,int userProfileId){
+	String finalvalue=userEmail+"|"+password+"|"+userProfileId;
+	byte[] encodedBytes = Base64.encodeBase64(finalvalue.getBytes());
+	return new String(encodedBytes);
 }
 }

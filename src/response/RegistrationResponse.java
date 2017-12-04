@@ -16,9 +16,23 @@ public class RegistrationResponse {
 	private ArrayList<RegistrationModel>registrationList=new ArrayList<RegistrationModel>();
 	@XmlElement(name="LoginModel")
 private ArrayList<LoginModel>loginModel=new ArrayList<LoginModel>();
+	@XmlElement(name="Login")
+	private LoginResponse login;
 	public RegistrationResponse(){
 		
 	}
+	
+	
+	public LoginResponse getLogin() {
+		return login;
+	}
+
+
+	public void setLogin(LoginResponse login) {
+		this.login = login;
+	}
+
+
 	public boolean getIsSuccess() {
 		return isSuccess;
 	}

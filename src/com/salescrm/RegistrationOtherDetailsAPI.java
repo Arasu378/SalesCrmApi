@@ -13,7 +13,7 @@ import response.RegistrationResponse;
 @Path("/registrationMoreDetails")
 public class RegistrationOtherDetailsAPI {
 @POST
-@Secured
+//@Secured
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public RegistrationResponse insertData(RegistrationModel model){
