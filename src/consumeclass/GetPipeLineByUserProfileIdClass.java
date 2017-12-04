@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import com.mysql.jdbc.Constants;
 
 import dbconstants.CompanyDBConstants;
 import dbconstants.PipeLineDBConstants;

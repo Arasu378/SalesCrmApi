@@ -92,13 +92,14 @@
       <version>2.5.0-b43</version>
       <scope>compile</scope>
     </dependency>
-  <!-- https://mvnrepository.com/artifact/junit/junit -->
-<dependency>
-    <groupId>junit</groupId>
-    <artifactId>junit</artifactId>
-    <version>4.12</version>
-    <scope>test</scope>
-</dependency>
+      <!-- https://mvnrepository.com/artifact/junit/junit -->
+      <dependency>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+          <version>4.12</version>
+          <scope>test</scope>
+      </dependency>
+
 
 <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpmime -->
 <dependency>
@@ -119,8 +120,12 @@
     <artifactId>httpcore</artifactId>
     <version>4.4.6</version>
 </dependency>
+      <dependency>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+          <version>4.12</version>
+      </dependency>
 
 
-    
   </dependencies>
 </project>
