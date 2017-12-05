@@ -97,5 +97,44 @@ public class InsertTokenClass {
 		}
 		return value;
 	}
+	public static String getTokenByUserProfileId(int UserProfileId){
+		String token=null;
+		Connection connection=null;
+		Statement statement=null;
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+		}catch(ClassNotFoundException e){
+			e.printStackTrace();
+		}
+		try{
+			String query="CALL  `Company.Token_GetTokenByUserProfileId`("+UserProfileId+");";
+			System.out.println("Query : "+query);
+			connection=DriverManager.getConnection(Constants.URL,Constants.USER,Constants.PASSWORD);
+			statement=connection.createStatement();
+			ResultSet rs=statement.executeQuery(query);
+			while(rs.next()){
+				token=rs.getString(TokenDBConstants.TOKEN);
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			if(connection!=null){
+				try{
+					connection.close();
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			}
+			if(statement!=null){
+				try{
+					statement.close();
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			}
+		}
+		return token;
+	}
 
 }

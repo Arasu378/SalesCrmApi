@@ -37,7 +37,6 @@ public static RegistrationResponse insertOtherDetails(RegistrationModel model){
 				LoginModel model2=new LoginModel();
 				model2.setUserEmail(email);
 				model2.setPassword(password);
-				String token=generateToken(model.getEmailAddress(),model.getUserPassword(),model.getUserProfileId());
 
 //				ArrayList<LoginModel> lsnew=new ArrayList<LoginModel>();
 				LoginResponse loginResponse=(LoginClass.login(model2));

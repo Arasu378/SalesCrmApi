@@ -104,17 +104,10 @@ try{
 		String CompCode=getCompanyCode(userEmail,new_encryptedpassword);
 		if(CompCode!=null){
 			int  UserProfileId=getUserProfileId(CompCode);
-			String token=generateToken(model.getUserEmail(),model.getPassword(),UserProfileId);
-			boolean tokenAlreadyThere=InsertTokenClass.findTokenIfExist(token);
-			if(!tokenAlreadyThere){
-				@SuppressWarnings("unused")
-				boolean tokenValue=InsertTokenClass.insertToken(UserProfileId,token);
-			}
-			
 			
 			if(UserProfileId!=0){
-				
-					LoginResponse loginResponse=getLoginView(UserProfileId,token);
+				String tokenAuthentication=InsertTokenClass.getTokenByUserProfileId(UserProfileId);
+					LoginResponse loginResponse=getLoginView(UserProfileId,tokenAuthentication);
 					response=loginResponse;
 				
 				
@@ -153,7 +146,6 @@ try{
 	}
 	return response;
 }
-@SuppressWarnings("unused")
 private static String getCompanyCode(String email,String password) throws SQLException{
 	String finalvalue=null;
 	 Connection connection=null;
@@ -190,7 +182,6 @@ private static String getCompanyCode(String email,String password) throws SQLExc
 	
 	return finalvalue;
 }
-@SuppressWarnings("unused")
 private static int  getUserProfileId(String CCode) throws SQLException{
 	 Connection connection=null;
 	 java.sql.Statement st=null;
@@ -228,7 +219,6 @@ private static int  getUserProfileId(String CCode) throws SQLException{
 			}
 	return finalvalue;
 }
-@SuppressWarnings("unused")
 private static LoginResponse getLoginView(int UserProfileId,String token){
 	LoginResponse response=new LoginResponse();
 	ArrayList<LoginModel>loginList=new ArrayList<LoginModel>();
@@ -349,10 +339,5 @@ private static LoginResponse getLoginView(int UserProfileId,String token){
 	
 	return response;
 }
-	@SuppressWarnings("unused")
-	private static String generateToken(String userEmail,String password,int userProfileId){
-		String finalvalue=userEmail+"|"+password+"|"+userProfileId;
-		byte[] encodedBytes = Base64.encodeBase64(finalvalue.getBytes());
-		return new String(encodedBytes);
-	}
+	
 }

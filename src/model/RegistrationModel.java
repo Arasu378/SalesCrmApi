@@ -35,9 +35,20 @@ private String modifiedDate;
 	private int languageId;
 	@XmlElement(name="CurrencyId")
 	private int currencyId;
+	@XmlElement(name="Token")
+	private String  token;
 	public RegistrationModel(){
 		
 	}
+	
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
 	public int getRegistrationId() {
 		return registrationId;
 	}

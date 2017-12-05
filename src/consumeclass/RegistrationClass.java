@@ -53,11 +53,20 @@ public static RegistrationResponse registration(RegistrationModel model){
 		   int proid=0;
 		   while(rs.next()){
 				 proid=rs.getInt(RegistrationDBConstants.LAST_INSERT_ID);
+				 if(proid!=0){
+					 String tokenAuthentication=generateToken(model.getEmailAddress(), new_encryptedpassword, proid);
+					 boolean isThere = InsertTokenClass.findTokenIfExist(tokenAuthentication);
+					 if(!isThere){
+						 InsertTokenClass.insertToken(proid, tokenAuthentication);
+					 }
+				 }
+				 String token=InsertTokenClass.getTokenByUserProfileId(proid);
 				 registrationList.clear();
 					RegistrationModel mod=new RegistrationModel();
 					mod.setRegistrationId(regId);
 					mod.setCompanyCode(cCode);
 					mod.setUserProfileId(proid);
+					mod.setToken(token);
 					mod.setUserPassword(model.getUserPassword());
 					mod.setEmailAddress(model.getEmailAddress());
 					registrationList.add(mod);
@@ -110,7 +119,6 @@ public static RegistrationResponse registration(RegistrationModel model){
 	}
 	return response;
 }
-@SuppressWarnings("unused")
 private static String RegisterEmail(String email,String password){
 	String finalvalue=null;
 
@@ -162,5 +170,10 @@ private static String RegisterEmail(String email,String password){
 		}
 	}
 	return finalvalue;
+}
+private static String generateToken(String userEmail,String password,int userProfileId){
+	String finalvalue=userEmail+"|"+password+"|"+userProfileId;
+	byte[] encodedBytes = Base64.encodeBase64(finalvalue.getBytes());
+	return new String(encodedBytes);
 }
 }

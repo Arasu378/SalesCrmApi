@@ -4,6 +4,7 @@
 package com.salescrm;
 
 import java.io.IOException;
+import java.util.StringTokenizer;
 
 import javax.annotation.Priority;
 import javax.ws.rs.NotAuthorizedException;
@@ -33,14 +34,17 @@ public class AuthenticationFilter implements ContainerRequestFilter  {
 			throws IOException {
 		String authorizationHeader=
 				requestContext.getHeaderString(HttpHeaders.AUTHORIZATION);
-		if(authorizationHeader==null || !authorizationHeader.startsWith("Kyros ")){
+		if(authorizationHeader==null){
 			throw new NotAuthorizedException("Authorization header must be provided");
 			
 		}
-		String token=authorizationHeader.substring("Kyros".length()).trim();
-		System.out.println("System Token : "+token);
+	//	String token=authorizationHeader.substring("Kyros".length()).trim();
+		int UserProfileId=getUserProfileId(authorizationHeader);
+		String headerToken=getToken(authorizationHeader);
+		System.out.println("System Token : "+headerToken);
 		try{
-			validateToken(token);
+		//	validateToken(token);
+			validateTokenWithUserProfileId(UserProfileId,headerToken);
 		}catch(Exception e){
 			e.printStackTrace();
 			requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).build());
@@ -48,6 +52,26 @@ public class AuthenticationFilter implements ContainerRequestFilter  {
 		}
 		
 	}
+	private static void validateTokenWithUserProfileId(int userProfileId,String token)throws Exception{
+		String orginalToken=InsertTokenClass.getTokenByUserProfileId(userProfileId);
+		System.out.println("Authentication value : "+orginalToken);
+		if(!orginalToken.equals(token)){
+			throw new NotAuthorizedException("Invalid Token!");	
+		}
+		
+	}
+	private static int getUserProfileId(String token){
+		StringTokenizer stringTokenizer=new StringTokenizer(token);
+		String firstOne=stringTokenizer.nextToken("|");
+		String secondOne=stringTokenizer.nextToken();
+		return Integer.parseInt(firstOne);
+	}
+	private static String getToken(String token){
+		StringTokenizer stringTokenizer=new StringTokenizer(token);
+		String firstOne=stringTokenizer.nextToken("|");
+		return stringTokenizer.nextToken();
+	}
+	
 	private void validateToken(String token)throws Exception{
 		boolean value=InsertTokenClass.findTokenIfExist(token);
 		System.out.println("Authentication value : "+value);
