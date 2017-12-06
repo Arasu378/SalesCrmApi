@@ -72,6 +72,7 @@ public class AuthenticationFilter implements ContainerRequestFilter  {
 		return stringTokenizer.nextToken();
 	}
 	
+	@SuppressWarnings("unused")
 	private void validateToken(String token)throws Exception{
 		boolean value=InsertTokenClass.findTokenIfExist(token);
 		System.out.println("Authentication value : "+value);
